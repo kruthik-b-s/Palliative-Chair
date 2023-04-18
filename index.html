@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Palliative Chair</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header>
+      <h1>Palliative Chair - Control Interface</h1>
+    </header>
+    <main>
+      <div id="alert" class="alert">
+        <span id="alert-message"></span>
+      </div>
+        <form>
+          <table>
+            <tbody>
+              <tr class="radial-shadow">
+                <td><span class="btn-name">Power :</span></td>
+                <td>
+                  <div class="toggle_radio">
+                    <input type="radio" class="toggle_option" id="power_first_toggle" name="power" value="off" />
+                    <input type="radio" class="toggle_option" id="power_second_toggle" name="power" value="on" />
+                    <label for="power_first_toggle"><p>OFF</p></label>
+                    <label for="power_second_toggle"><p>ON</p></label>
+                    <div class="toggle_option_slider"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="inset-shadow">
+                <td><span class="btn-name">Heat :</span></td>
+                <td>
+                  <div class="toggle_radio">
+                    <input type="radio" class="toggle_option" id="heat_first_toggle" name="heat" value="off" />
+                    <input type="radio" class="toggle_option" id="heat_second_toggle" name="heat" value="on" />
+                    <label for="heat_first_toggle"><p>OFF</p></label>
+                    <label for="heat_second_toggle"><p>ON</p></label>
+                    <div class="toggle_option_slider"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="inset-shadow">
+                <td><span class="btn-name">Temperature : <span id="temperature_placeholder"></span></span></td>
+                <td>
+                  <div class="slidecontainer">
+                    <input type="range" class="slider" id="temperature_input" min="25" max="40" name="temperature" >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="form-group hard-shadow">
+            <p class="btn-name">Shoulder Massager Mode :</p>
+            <div class="toggle_radio">
+              <input type="radio" class="toggle_option" id="shoulder_first_toggle" name="shoulder" value="off" />
+              <input type="radio" class="toggle_option" id="shoulder_second_toggle" name="shoulder" value="low" />
+              <input type="radio" class="toggle_option" id="shoulder_third_toggle" name="shoulder" value="medium" />
+              <input type="radio" class="toggle_option" id="shoulder_fourth_toggle" name="shoulder" value="high" />
+              <label for="shoulder_first_toggle"><p>OFF</p></label>
+              <label for="shoulder_second_toggle"><p>LOW</p></label>
+              <label for="shoulder_third_toggle"><p>MEDIUM</p></label>
+              <label for="shoulder_fourth_toggle"><p>HIGH</p></label>
+              <div class="toggle_option_slider"></div>
+            </div>
+          </div>
+          <div class="form-group hard-shadow">
+            <p class="btn-name">Lumber Massager Mode :</p>
+            <div class="toggle_radio">
+              <input type="radio" class="toggle_option" id="lumber_first_toggle" name="lumber" value="off" />
+              <input type="radio" class="toggle_option" id="lumber_second_toggle" name="lumber" value="low" />
+              <input type="radio" class="toggle_option" id="lumber_third_toggle" name="lumber" value="medium" />
+              <input type="radio" class="toggle_option" id="lumber_fourth_toggle" name="lumber" value="high" />
+              <label for="lumber_first_toggle"><p>OFF</p></label>
+              <label for="lumber_second_toggle"><p>LOW</p></label>
+              <label for="lumber_third_toggle"><p>MEDIUM</p></label>
+              <label for="lumber_fourth_toggle"><p>HIGH</p></label>
+              <div class="toggle_option_slider"></div>
+            </div>
+          </div>
+          <div class="form-group hard-shadow">
+            <p class="btn-name">Thighs Massager Mode :</p>
+            <div class="toggle_radio">
+              <input type="radio" class="toggle_option" id="thighs_first_toggle" name="thighs" value="off" />
+              <input type="radio" class="toggle_option" id="thighs_second_toggle" name="thighs" value="low" />
+              <input type="radio" class="toggle_option" id="thighs_third_toggle" name="thighs" value="medium" />
+              <input type="radio" class="toggle_option" id="thighs_fourth_toggle" name="thighs" value="high" />
+              <label for="thighs_first_toggle"><p>OFF</p></label>
+              <label for="thighs_second_toggle"><p>LOW</p></label>
+              <label for="thighs_third_toggle"><p>MEDIUM</p></label>
+              <label for="thighs_fourth_toggle"><p>HIGH</p></label>
+              <div class="toggle_option_slider"></div>
+            </div>
+          </div>
+          <div class="form-group hard-shadow">
+            <p class="btn-name">Arms Massager Mode :</p>
+            <div class="toggle_radio">
+              <input type="radio" class="toggle_option" id="arms_first_toggle" name="arms" value="off" />
+              <input type="radio" class="toggle_option" id="arms_second_toggle" name="arms" value="low" />
+              <input type="radio" class="toggle_option" id="arms_third_toggle" name="arms" value="medium" />
+              <input type="radio" class="toggle_option" id="arms_fourth_toggle" name="arms" value="high" />
+              <label for="arms_first_toggle"><p>OFF</p></label>
+              <label for="arms_second_toggle"><p>LOW</p></label>
+              <label for="arms_third_toggle"><p>MEDIUM</p></label>
+              <label for="arms_fourth_toggle"><p>HIGH</p></label>
+              <div class="toggle_option_slider"></div>
+            </div>
+          </div>
+          <button type="submit" class="btn">Apply Changes</button>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <div>
+        <p>Designed and Developed by :</p>
+        <ul>
+          <li>Nikhil S</li>
+          <li>Kruthik B S</li>
+          <li>Sumanth K S</li>
+          <li>Sanjay C</li>
+        </ul>
+      </div>
+      <div>
+        <p>Special Thanks to:</p>
+        <ul>
+          <li>Dr. Dattathreya (Sr. Prof. & Dean Planning, AIET)</li>
+          <li>Dr. Peter Fernandes (Prinicipal, AIET)</li>
+        </ul>
+        <p>For their Constant Support and Guidance</p>
+      </div>
+    </footer>
+   <script src="script.js"></script>
+  </body>
+</html>

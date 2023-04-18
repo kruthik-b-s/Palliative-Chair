@@ -177,22 +177,6 @@ left: 215px;
 background: rgba(255, 255, 255, 0.3);
 left: 322px;
 }
-#back_first_toggle:checked ~ .toggle_option_slider {
-background: rgba(255, 255, 255, 0.3);
-left: 3px;
-}
-#back_second_toggle:checked ~ .toggle_option_slider {
-background: rgba(255, 255, 255, 0.3);
-left: 109px;
-}
-#back_third_toggle:checked ~ .toggle_option_slider {
-background: rgba(255, 255, 255, 0.3);
-left: 215px;
-}
-#back_fourth_toggle:checked ~ .toggle_option_slider {
-background: rgba(255, 255, 255, 0.3);
-left: 322px;
-}
 #lumber_first_toggle:checked ~ .toggle_option_slider {
 background: rgba(255, 255, 255, 0.3);
 left: 3px;
@@ -206,6 +190,22 @@ background: rgba(255, 255, 255, 0.3);
 left: 215px;
 }
 #lumber_fourth_toggle:checked ~ .toggle_option_slider {
+background: rgba(255, 255, 255, 0.3);
+left: 322px;
+}
+#thighs_first_toggle:checked ~ .toggle_option_slider {
+background: rgba(255, 255, 255, 0.3);
+left: 3px;
+}
+#thighs_second_toggle:checked ~ .toggle_option_slider {
+background: rgba(255, 255, 255, 0.3);
+left: 109px;
+}
+#thighs_third_toggle:checked ~ .toggle_option_slider {
+background: rgba(255, 255, 255, 0.3);
+left: 215px;
+}
+#thighs_fourth_toggle:checked ~ .toggle_option_slider {
 background: rgba(255, 255, 255, 0.3);
 left: 322px;
 }
@@ -249,4 +249,25 @@ gap: 1.5rem;
 footer ul {
 list-style: none;
 margin: 0.5rem 0;
+}
+.alert {
+padding: 20px;
+color: white;
+position: fixed;
+bottom: 0;
+right: 0;
+width: 250px;
+transition: opacity 0.6s;
+opacity: 0;
+visibility: hidden;
+}
+.alert.show {
+opacity: 1;
+visibility: visible;
+}
+.alert-danger {
+background-color: #f44336;
+}
+.alert-success {
+background-color: #4CAF50;
 }
