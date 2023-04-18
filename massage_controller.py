@@ -2,20 +2,14 @@ from motor_driver import L298N
 
 class MassageController:
     
-    MODE_OFF = 'MODE_OFF'
+    MODE_OFF = 0
     MODE_LOW = 70
     MODE_MEDIUM = 85
     MODE_HIGH = 100
     
-    def __init__(self, SHOULDER_MASSAGER_PINS, BACK_MASSAGER_PINS, LUMBER_MASSAGER_PINS, ARMS_MASSAGER_PINS):
-        
-        SHOULDER_MASSAGER_CTRL1_PIN, SHOULDER_MASSAGER_CTRL2_PIN, SHOULDER_MASSAGER_INTENSITY_PIN = SHOULDER_MASSAGER_PINS
-        BACK_MASSAGER_CTRL1_PIN, BACK_MASSAGER_CTRL2_PIN, BACK_MASSAGER_INTENSITY_PIN = BACK_MASSAGER_PINS
-        LUMBER_MASSAGER_CTRL1_PIN, LUMBER_MASSAGER_CTRL2_PIN, LUMBER_MASSAGER_INTENSITY_PIN = LUMBER_MASSAGER_PINS
-        ARMS_MASSAGER_CTRL1_PIN, ARMS_MASSAGER_CTRL2_PIN, ARMS_MASSAGER_INTENSITY_PIN = ARMS_MASSAGER_PINS
-        
-        self.driver1 = L298N(SHOULDER_MASSAGER_CTRL1_PIN, SHOULDER_MASSAGER_CTRL2_PIN, SHOULDER_MASSAGER_INTENSITY_PIN, BACK_MASSAGER_CTRL1_PIN, BACK_MASSAGER_CTRL2_PIN, BACK_MASSAGER_INTENSITY_PIN)
-        self.driver2 = L298N(LUMBER_MASSAGER_CTRL1_PIN, LUMBER_MASSAGER_CTRL2_PIN, LUMBER_MASSAGER_INTENSITY_PIN, ARMS_MASSAGER_CTRL1_PIN, ARMS_MASSAGER_CTRL2_PIN, ARMS_MASSAGER_INTENSITY_PIN)
+    def __init__(self, shoulder_massager_pins, back_massager_pins, lumber_massager_pins, arms_massager_pins):
+        self.driver1 = L298N(*shoulder_massager_pins, *back_massager_pins)
+        self.driver2 = L298N(*lumber_massager_pins, *arms_massager_pins)
     
     
     def shoulder_massager(self, mode):
@@ -48,9 +42,16 @@ class MassageController:
             return
         
         self.driver2.channel_b_clockwise(mode)
-    
+        
     
     def off(self):
+        self.driver1.channel_a_off()
+        self.driver1.channel_b_off()
+        self.driver2.channel_a_off()
+        self.driver2.channel_b_off()
+    
+    
+    def deinit(self):
         self.driver1.deinit()
         self.driver2.deinit()
         

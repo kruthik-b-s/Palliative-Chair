@@ -12,12 +12,12 @@ class MicroServer:
     def application(self,client_socket,client_address,client_count):
 
         data = f"Client {client_count} at {client_address[0]}"
-        data = bytes(data,'utf-8')
+        
 
         response = f"HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: {len(data)}\n\n"
         
-        yield bytes(response,'utf-8')
-        yield data
+        yield response.encode()
+        yield data.encode()
     
     def serve(self):
         
@@ -43,12 +43,10 @@ class MicroServer:
                     for block in self.application(client_socket,client_address,self.client_count):
                         try:
                             bytecount += client_socket.write(block)
-                            time.sleep(0.01)
                         except:
                             pass
                     
                     client_socket.close()
-                    time.sleep(2)
                     gc.collect()
                     print(f"sent {bytecount} bytes in {round(time.ticks_diff(time.ticks_ms(),t1)/1000.0,2)} secs.")
 
