@@ -43,6 +43,7 @@ class MicroServer:
                     for block in self.application(client_socket,client_address,self.client_count):
                         try:
                             bytecount += client_socket.write(block)
+                            time.sleep(0.005)
                         except:
                             pass
                     
