@@ -2,14 +2,14 @@ from machine import Pin, PWM
 
 
 class L298N:
-    def __init__(self, IN1_PIN, IN2_PIN, ENA_PIN, IN3_PIN, IN4_PIN, ENB_PIN):
-        self.in1 = Pin(IN1_PIN, Pin.OUT)
-        self.in2 = Pin(IN2_PIN, Pin.OUT)
-        self.ena = PWM(Pin(ENA_PIN))
+    def __init__(self, in1_pin, in2_pin, ena_pin, in3_pin, in4_pin, enb_pin):
+        self.in1 = Pin(in1_pin, Pin.OUT)
+        self.in2 = Pin(in2_pin, Pin.OUT)
+        self.ena = PWM(Pin(ena_pin))
         self.ena.freq(1000)
-        self.in3 = Pin(IN3_PIN, Pin.OUT)
-        self.in4 = Pin(IN4_PIN, Pin.OUT)
-        self.enb = PWM(Pin(ENB_PIN))
+        self.in3 = Pin(in3_pin, Pin.OUT)
+        self.in4 = Pin(in4_pin, Pin.OUT)
+        self.enb = PWM(Pin(enb_pin))
         self.enb.freq(1000)
         self.channel_a_off()
         self.channel_b_off()
@@ -59,10 +59,10 @@ class L298N:
         self.enb.deinit()
 
 class L298NSingleChannel:
-    def __init__(self, IN1_PIN, IN2_PIN, ENA_PIN):
-        self.in1 = Pin(IN1_PIN, Pin.OUT)
-        self.in2 = Pin(IN2_PIN, Pin.OUT)
-        self.ena = PWM(Pin(ENA_PIN))
+    def __init__(self, in1_pin, in2_pin, ena_pin):
+        self.in1 = Pin(in1_pin, Pin.OUT)
+        self.in2 = Pin(in2_pin, Pin.OUT)
+        self.ena = PWM(Pin(ena_pin))
         self.ena.freq(1000)
         self.channel_a_off()
     
