@@ -31,16 +31,12 @@ class App:
                     self.temperature = 30
                     self.shoulder = self.lumber = self.thighs = self.arms = MassageController.MODE_OFF
                     return
-            
+
             elif key == 'heat':
-                if value == 'on':
-                    self.heat = True
-                else:
-                    self.heat = False
-            
+                self.heat = value == 'on'
             elif key == 'temperature':
                 self.temperature = int(value)
-                    
+
             else:
                 MODE_MAP = {
                     'off': MassageController.MODE_OFF,
@@ -70,25 +66,26 @@ class App:
         self.heat_controller.on(self.temperature)
         
     def parse_http_request(self, http_request):
-        if http_request:
-            lines = http_request.split(b'\r\n')
-            method, path, version = lines[0].split(b' ')
-            headers = {}
-            body = ''
-            for line in lines[1:]:
-                if line == b'':
-                    break
-                key, value = line.split(b': ')
-                headers[key.decode('utf-8')] = value.decode('utf-8')
-            content_length = int(headers.get('Content-Length', 0))
-            try:
-                if content_length > 0:
-                    body = http_request[-content_length:].decode('utf-8')
-                body_json = json.loads(body)
-            except:
-                body_json = {}
+        if not http_request:
+            return
+        lines = http_request.split(b'\r\n')
+        method, path, version = lines[0].split(b' ')
+        headers = {}
+        body = ''
+        for line in lines[1:]:
+            if line == b'':
+                break
+            key, value = line.split(b': ')
+            headers[key.decode('utf-8')] = value.decode('utf-8')
+        content_length = int(headers.get('Content-Length', 0))
+        try:
+            if content_length > 0:
+                body = http_request[-content_length:].decode('utf-8')
+            body_json = json.loads(body)
+        except:
+            body_json = {}
 
-            return method.decode('utf-8'), path.decode('utf-8'), version.decode('utf-8'), headers, body_json
+        return method.decode('utf-8'), path.decode('utf-8'), version.decode('utf-8'), headers, body_json
             
     def application(self, client_socket,client_address, client_count):
         
@@ -97,14 +94,13 @@ class App:
                 http_request = client_socket.recv(1024)
                 break
             except OSError as e:
-                if e.errno == errno.EAGAIN:
-                    time.sleep(0.1)
-                    continue
-                else:
+                if e.errno != errno.EAGAIN:
                     raise
-        
+
+                time.sleep(0.1)
+                continue
         method, path, _, _, body_json = self.parse_http_request(http_request)
-        
+
         if method == 'GET' and path == '/':
             with open('index.html', 'rb') as f:
                 file_contents = f.read()
@@ -114,7 +110,7 @@ class App:
             for i in range(0, len(file_contents), chunk_size):
                 yield file_contents[i:i+chunk_size]
             return
-        
+
         if method == 'GET' and path == '/favicon.ico':
             with open('favicon.ico', 'rb') as f:
                 file_contents = f.read()
@@ -124,7 +120,7 @@ class App:
             for i in range(0, len(file_contents), chunk_size):
                 yield file_contents[i:i+chunk_size]
             return
-        
+
         if method == 'GET' and path == '/styles.css':
             with open('styles.css', 'rb') as f:
                 file_contents = f.read()
@@ -134,7 +130,7 @@ class App:
             for i in range(0, len(file_contents), chunk_size):
                 yield file_contents[i:i+chunk_size]
             return
-        
+
         if method == 'GET' and path == '/script.js':
             with open('script.js', 'rb') as f:
                 file_contents = f.read()
@@ -144,7 +140,7 @@ class App:
             for i in range(0, len(file_contents), chunk_size):
                 yield file_contents[i:i+chunk_size]
             return
-        
+
         if method == 'GET' and path == '/parameters':
             MODE_MAP = {
                 MassageController.MODE_OFF: 'off',
@@ -166,7 +162,7 @@ class App:
             yield response_header.encode()
             yield response_body.encode()
             return
-        
+
         if method == 'PUT' and path == '/parameters':
             self.set_parameters(body_json)
             self.configure_massage_controller()
