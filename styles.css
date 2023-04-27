@@ -98,7 +98,6 @@ background: #04AA6D;
 cursor: pointer;
 }
 .toggle_radio {
-position: relative;
 background: rgba(255, 255, 255, 0.1);
 margin: 4px auto;
 overflow: hidden;
@@ -119,11 +118,10 @@ display: none;
 .toggle_radio label {
 font-size: 0.75rem;
 color: rgba(255, 255, 255, 0.9);
-z-index: 0;
 display: block;
 width: 100px;
 height: 20px;
-margin: 3px 3px;
+margin: 3px;
 -webkit-border-radius: 50px;
 -moz-border-radius: 50px;
 border-radius: 50px;
